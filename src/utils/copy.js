@@ -43,7 +43,7 @@ var copy = function (src, dst, cb) {
     });
 };
 // 在复制目录前需要判断该目录是否存在，不存在需要先创建目录
-var exists = function (src, dst, callbackFunction, completeCallback) {
+const exists = function (src, dst, callbackFunction, completeCallback) {
     fs.access(dst, (e) =>  {
         // 已存在
         if (e) {

@@ -1,12 +1,12 @@
-const download = require('download-git-repo')
 const handlebars = require('handlebars')
 const fs = require('fs')
 const fse = require('fs-extra')
 const inquirer = require('inquirer')
 const path = require('path')
 const ora = require('ora');
-const chalk = require('chalk');
 const {copy, exists} = require('../utils/copy');
+const {DOWNLOAD} = require('../utils/constants') // 导入本地缓存区地址
+const {success, error} = require('../utils/message')
 
 const configList = (project) => {
     return [
@@ -28,6 +28,7 @@ const configList = (project) => {
         }
     ]
 }
+
 const create1 = (name) => {
     const list = configList(name)
     if (!fs.existsSync(name)) {
@@ -36,7 +37,7 @@ const create1 = (name) => {
         spinner.start();
         exists('./template', projectName, copy, function (err) {
             if (err) {
-                return console.error(error)
+                return console.error(err)
             }
             spinner.succeed();
             list.forEach(item => {
@@ -46,21 +47,20 @@ const create1 = (name) => {
                 const generateData = handlebars.compile(templateData)(item.data);
                 fs.writeFileSync(targetPath, generateData)
             });
-            console.log(chalk.green('Successfully created project ' + name));
-            console.log(chalk.green('Get start width the following commands'));
+            success('Successfully created project ' + name);
+            success('Get start width the following commands');
             console.log('cd ' + name);
             console.log('npm install');
             console.log('npm run serve');
         })
     } else {
-        console.log(symbols.error, chalk.red('项目已存在'))
+        console.log(error('项目已存在'))
     }
 }
+
 const xxx = async () => {
-    const list = await fse.readdir('./template')
-    // list = path.map(({name})=>name)
-    console.log(list)
-    let answer = await inquirer.prompt([
+    const list = await fse.readdir(DOWNLOAD)
+    const answer = await inquirer.prompt([
         {
             type: 'list',
             name: 'template',
@@ -70,13 +70,11 @@ const xxx = async () => {
     ])
     return answer.template
 }
+
 const create = async (name) => {
     const templateName = await xxx();
-    console.log(templateName)
-    const list = configList(name)
     const spinner = ora('正在创建模板');
     const projectName = path.join(process.cwd(), name, templateName)
-    console.log(projectName)
     spinner.start();
     // 过滤函数
     const filterFuc = (src, dest) => {
@@ -85,7 +83,7 @@ const create = async (name) => {
         }
         return true;
     }
-    fse.copy(`./template/${templateName}`, projectName, {filter: filterFuc}, (err) => {
+    fse.copy(`${DOWNLOAD}/${templateName}`, projectName, {filter: filterFuc}, (err) => {
         if (err) return console.error(err)
         spinner.succeed();
     })

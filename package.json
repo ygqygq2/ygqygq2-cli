@@ -4,7 +4,7 @@
   "description": "个人脚手架",
   "main": "src/main.js",
   "bin": {
-    "ygqygq2-cli": ".bin/www"
+    "ygqygq2-cli": "./bin/www"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -12,14 +12,27 @@
     "download-git-repo": "^3.0.2",
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
+    "ini": "^3.0.1",
     "inquirer": "^8.1.0",
+    "log-symbols": "^4.1.0",
     "ora": "^5.4.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-env": "^2.4.1"
+    "babel-env": "^2.4.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-standard": "^5.0.0"
   },
   "scripts": {
     "compile": "babel src -d dist",

@@ -48,7 +48,6 @@ const getAll = async () => {
     let opts //定义一个变量用来存获取到的文件
     opts = await readFile(RC, 'utf8')
     opts = decode(opts) // 用ini的decode方法解下码，将key/valut转为对象
-    console.log(opts)
     return opts
 }
 module.exports = {
