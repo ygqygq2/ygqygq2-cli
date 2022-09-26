@@ -1,6 +1,6 @@
 {
   "name": "ygqygq2-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "个人脚手架",
   "main": "src/main.js",
   "bin": {

@@ -1531,7 +1531,7 @@ packages:
     dev: false
 
   /chokidar/1.7.0:
-    resolution: {integrity: sha512-mk8fAWcRUOxY7btlLtitj3A45jOwSAxH4tOFOoEGbVsl6cL6pPMWUy7dwZ/canfj3QEdP6FHSnf/l1c6/WkzVg==}
+    resolution: {integrity: sha1-eY5ol3gVHIB2tLNg5e3SjNortGg=}
     deprecated: Chokidar 2 will break on node v14+. Upgrade to chokidar 3 with 15x less dependencies.
     requiresBuild: true
     dependencies:
