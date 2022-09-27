@@ -63,6 +63,8 @@ const create = async (name) => {
             const destFilePath = item.replace(templateRoot, projectName);
             transformTemplate(item, destFilePath, {name});
         });
+
+        fse.removeSync(path.join(projectName, 'template'));
     })
 
 }
